@@ -5,10 +5,12 @@
 
 print('Please enter a 2 digit number for max multiplier')
 max_multiplier = int(input())
+first_multiplier = 1
 List_of_all_multipliers=[]
 List_of_all_products=[]
 check_list_of_deviders=[]
-#-----------------------Перебор и запись множества множителей------------------------
+last_devider=max_multiplier
+#-----------------------Перебор и запись множества множителей-------------------------
 for multiplier in range(1, (max_multiplier + 1)):
     List_of_all_multipliers.append(multiplier)
     if multiplier == 1:
@@ -17,24 +19,20 @@ for multiplier in range(1, (max_multiplier + 1)):
         List_of_all_products.append(List_of_all_products[multiplier-2] * multiplier)
 print(List_of_all_multipliers) # Проверка списка множителей
 print(List_of_all_products) # Проверка результатов умножения
-#------------------------------------------------------------------------------------
-#---Начинаем поиск наименьшего значения,делимого на все множители из первогосписка---
+#-------------------------------------------------------------------------------------
+#---Начинаем поиск наименьшего значения,делимого на все множители из первого списка---
 last_number_of_production = int(max(List_of_all_products))
 for search_min_of_production_for_all_deviders in range(1, last_number_of_production):
-    devider = max_multiplier
-    result_of_max_dev = int(search_min_of_production_for_all_deviders / devider)
-    if result_of_max_dev >= 1 and search_min_of_production_for_all_deviders % devider == 0:
-        next_devider = 1
-        for next_devider in range(1, (devider+1)):
-            result_of_next_dev = int(search_min_of_production_for_all_deviders % next_devider)
-            if result_of_next_dev == 0:
-                next_devider += 1
-                if int((max(check_list_of_deviders))+1) < max_multiplier:
-                    check_list_of_deviders.clear(check_list_of_deviders)
-                else:
-                    check_list_of_deviders.append(search_min_of_production_for_all_deviders)
-                    print(check_list_of_deviders)
-                
+    if search_min_of_production_for_all_deviders % max_multiplier == 0:
+        for each_devider in range(1, max_multiplier+1):
+            result_of_last_dev = search_min_of_production_for_all_deviders % each_devider
+            if result_of_last_dev == 0:
+                check_list_of_deviders.append(each_devider)
+            else:        
+                each_devider = 1
+        if len(check_list_of_deviders) == len(List_of_all_multipliers):
+            print(search_min_of_production_for_all_deviders, 'is the less number that can be devide by', List_of_all_multipliers)
+            break
+        check_list_of_deviders.clear()            
     else:
         search_min_of_production_for_all_deviders += 1
-
