@@ -20,16 +20,23 @@ for number in range(2, int(last_for_range)):
             break
     else:
         found_devider = 0
+print(list_of_founds)
 #------------------------------------------------------------------
 #---Summ all element and square them-------------------------------
-for x in range(1, int(how_much_number_need)):
-    element_from_list_of_founds = list_of_founds(x)
-    Summ_of_elements = 1+1
-Square_of_summ = Summ_of_elements^2
-print(Square_of_summ)
+Summ_of_elements = 0
+for x in range(1, int(how_much_number_need)+1): 
+    element_from_list_of_founds = list_of_founds[x-1]
+    Summ_of_elements += element_from_list_of_founds
+    Square_of_summ = Summ_of_elements**2
+print('Square of summ :\n', +Square_of_summ)
 #------------------------------------------------------------------
 #---Square all element and summ them-------------------------------
-
+summ_of_squares = 0
+for x in range(1, int(how_much_number_need)+1, 1):
+    element_from_list_of_founds = list_of_founds[x-1]
+    Square_of_element = element_from_list_of_founds**2
+    summ_of_squares += Square_of_element
+print('Summ of all squares :\n', +summ_of_squares)
 #------------------------------------------------------------------
-
-        
+#-----Summ of squares - square of summs----------------------------
+print('Answer is', +Square_of_summ-summ_of_squares)
